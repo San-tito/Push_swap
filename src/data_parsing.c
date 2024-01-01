@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:22:46 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/01 19:29:38 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/01 22:49:37 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_atoi(char *str, int *has_error)
 	while (ft_isdigit(*str))
 	{
 		n = (n * 10) + (*str++ - '0');
-		if (INT_MIN > n || n > INT_MAX)
+		if (INT_MIN > (n * sign) || (n * sign) > INT_MAX)
 			*has_error = 1;
 	}
 	return (n * sign);
