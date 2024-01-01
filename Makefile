@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/01 17:16:42 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/01 19:31:17 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -16,7 +16,7 @@
 
 NAME		= push_swap
 CC 		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 DFLAGS	= -MMD -MF $(@:.o=.d)
 
 ################################################################################
@@ -29,7 +29,7 @@ INCLUDE_PATH	= ./include
 
 HEADER	= $(INCLUDE_PATH)/push_swap.h
 
-SRCS =	operations.c
+SRCS =	data_parsing.c operations.c
 
 MAIN =	push_swap.c 
 
