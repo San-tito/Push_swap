@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:22:46 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/01 22:49:37 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/02 13:57:12 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,10 @@ int	ft_atoi(char *str, int *has_error)
 		str++;
 	}
 	while (ft_isdigit(*str))
-	{
 		n = (n * 10) + (*str++ - '0');
-		if (INT_MIN > (n * sign) || (n * sign) > INT_MAX)
-			*has_error = 1;
-	}
+	n *= sign;
+	if (INT_MIN > n || n > INT_MAX)
+		*has_error = 1;
 	return (n * sign);
 }
 
@@ -58,4 +57,17 @@ void	validate_syntax(char *str, int *has_error)
 		str++;
 	if (*str)
 		*has_error = 1;
+}
+
+void	search_for_duplicate(t_stack *stack, int value, int *has_error)
+{
+	t_stack	*temp;
+
+	temp = stack;
+	while (temp)
+	{
+		if (temp->value == value)
+			*has_error = 1;
+		temp = temp->next;
+	}
 }
