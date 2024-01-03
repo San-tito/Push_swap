@@ -1,13 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 16:53:39 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/01 16:53:40 by sguzman          ###   ########.fr       */
+/*   Created: 2024/01/03 18:16:39 by sguzman           #+#    #+#             */
+/*   Updated: 2024/01/03 18:24:58 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 
+void	ra(t_stack **a)
+{
+}
+
+void	rb(t_stack **b)
+{
+}
+
+void	rr(t_stack **a, t_stack **b)
+{
+	ra(a);
+	rb(b);
+}

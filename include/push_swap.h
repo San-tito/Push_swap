@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/03 17:25:18 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/03 18:25:56 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,20 @@ void				clear_stack(t_stack **stack);
 /*                               Setup stack functions                        */
 /* ************************************************************************** */
 void				setup_stack(t_stack **stack, char **argv, int argc);
+
+/* ************************************************************************** */
+/*                            			Operations                            */
+/* ************************************************************************** */
+void				sa(t_stack **a);
+void				sb(t_stack **b);
+void				ss(t_stack **a, t_stack **b);
+void				pa(t_stack **a, t_stack **b);
+void				pb(t_stack **a, t_stack **b);
+void				ra(t_stack **a);
+void				rb(t_stack **b);
+void				rr(t_stack **a, t_stack **b);
+void				rra(t_stack **a);
+void				rrb(t_stack **b);
+void				rrr(t_stack **a, t_stack **b);
 
 #endif
