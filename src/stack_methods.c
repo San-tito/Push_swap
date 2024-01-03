@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:58:16 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/02 14:09:00 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/03 17:12:29 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	clear_stack(t_stack **stack)
 {
 	while (*stack)
 		pop(stack);
+	*stack = NULL;
 }
 
 void	push(t_stack **stack, int value)

@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/02 14:06:28 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/02 17:47:26 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -29,7 +29,7 @@ INCLUDE_PATH	= ./include
 
 HEADER	= $(INCLUDE_PATH)/push_swap.h
 
-SRCS =	data_parsing.c operations.c stack_methods.c
+SRCS =	data_parsing.c operations.c stack_methods.c setup_stack.c
 
 MAIN =	push_swap.c 
 
