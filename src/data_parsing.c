@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:22:46 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/03 17:15:12 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/03 17:25:54 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_atoi(char *str, int *has_error)
 	n *= sign;
 	if (INT_MIN > n || n > INT_MAX)
 		*has_error = 1;
-	return (n * sign);
+	return (n);
 }
 
 void	validate_syntax(char *str, int *has_error)

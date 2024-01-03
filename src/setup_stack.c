@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:14:41 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/03 17:17:47 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/03 17:29:02 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	setup_stack(t_stack **stack, char **argv, int argc)
 		nbr = ft_atoi(*(argv + argc), &has_error);
 		search_for_duplicate(*stack, nbr, &has_error);
 		push(stack, nbr);
-		if (has_error)
+		if (has_error || !*stack)
 		{
 			clear_stack(stack);
 			ft_putstr(ERROR, STDERR_FILENO);
