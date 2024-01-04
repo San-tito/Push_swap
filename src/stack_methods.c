@@ -6,13 +6,13 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:58:16 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/03 17:28:42 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/03 23:58:40 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	pop(t_stack **stack)
+void	pop(t_stack **stack)
 {
 	t_stack	*temp;
 
@@ -25,7 +25,21 @@ void	clear_stack(t_stack **stack)
 {
 	while (*stack)
 		pop(stack);
-	*stack = NULL;
+}
+
+int	size(t_stack **stack)
+{
+	t_stack	*temp;
+	int		i;
+
+	temp = *stack;
+	i = 0;
+	while (temp)
+	{
+		temp = (*temp).next;
+		i++;
+	}
+	return (i);
 }
 
 void	push(t_stack **stack, int value)

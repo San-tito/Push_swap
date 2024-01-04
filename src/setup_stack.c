@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:14:41 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/03 18:30:00 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/04 00:02:21 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	setup_stack(t_stack **stack, char **argv, int argc)
 		if (has_error || !*stack)
 		{
 			clear_stack(stack);
-			ft_putstr(ERROR, STDERR_FILENO);
+			ft_putstr(RED, STDERR_FILENO);
+			ft_putstr("Error\n", STDERR_FILENO);
+			ft_putstr(RESET, STDERR_FILENO);
 			exit(1);
 		}
 	}

@@ -6,23 +6,36 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:51:19 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/03 18:29:55 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/04 02:34:59 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void	printStack(t_stack *stack)
+void	printStacks(t_stack *stackA, t_stack *stackB)
 {
-	t_stack	*temp;
-
-	temp = stack;
-	while (temp)
+	while (stackA || stackB)
 	{
-		printf("%d\n", (*temp).value);
-		temp = (*temp).next;
+		if (stackA)
+		{
+			printf("%d ", stackA->value);
+			stackA = stackA->next;
+		}
+		else
+			printf("  ");
+		if (stackB)
+		{
+			printf("%d ", stackB->value);
+			stackB = stackB->next;
+		}
+		else
+			printf("  ");
+		printf("\n");
 	}
+	printf("_ _\n");
+	printf("a b\n");
+	printf("\n");
 }
 
 int	main(int argc, char **argv)
@@ -33,10 +46,13 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc < 3)
-		return (1);
+		return (0);
 	setup_stack(&a, argv, argc);
-	printStack(a);
-	(void)b;
+	printStacks(a, b);
+	ra(&a);
+	printStacks(a, b);
+	pb(&a, &b);
+	printStacks(a, b);
 	clear_stack(&a);
 	return (0);
 }

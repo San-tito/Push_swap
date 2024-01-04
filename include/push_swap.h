@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/03 19:30:24 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/04 00:02:27 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define ERROR "\033[0;31mError\n\033[m"
+# define RED "\033[0;31m"
+# define RESET "\033[m"
 
 /* ************************************************************************** */
 /*                                Stack definition                            */
@@ -40,7 +41,9 @@ void				search_for_duplicate(t_stack *stack, int value,
 /*                              Stack methods functions                       */
 /* ************************************************************************** */
 void				push(t_stack **stack, int value);
+void				pop(t_stack **stack);
 void				clear_stack(t_stack **stack);
+int					size(t_stack **stack);
 
 /* ************************************************************************** */
 /*                               Setup stack functions                        */
