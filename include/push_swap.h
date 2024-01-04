@@ -6,18 +6,20 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/04 00:02:27 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/04 19:50:11 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "../external/get_next_line.h"
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 
 # define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
 # define RESET "\033[m"
 
 /* ************************************************************************** */
@@ -49,6 +51,9 @@ int					size(t_stack **stack);
 /*                               Setup stack functions                        */
 /* ************************************************************************** */
 void				setup_stack(t_stack **stack, char **argv, int argc);
+int					stack_is_sorted(t_stack *stack);
+void				wipe(t_stack **a, t_stack **b);
+void				ft_putstr(char *s, int fd);
 
 /* ************************************************************************** */
 /*                                Operations                                  */

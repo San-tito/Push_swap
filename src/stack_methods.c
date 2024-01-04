@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:58:16 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/04 14:45:11 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/04 19:29:09 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	pop(t_stack **stack)
 
 void	clear_stack(t_stack **stack)
 {
+	if (!stack)
+		return ;
 	while (*stack)
 		pop(stack);
 }

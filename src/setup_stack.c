@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:14:41 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/04 00:02:21 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/04 19:47:25 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,32 @@ void	ft_putstr(char *s, int fd)
 		return ;
 	while (*s)
 		write(fd, s++, 1);
+}
+
+void	wipe(t_stack **a, t_stack **b)
+{
+	clear_stack(a);
+	clear_stack(b);
+	ft_putstr(RED, STDERR_FILENO);
+	ft_putstr("Error\n", STDERR_FILENO);
+	ft_putstr(RESET, STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
+
+int	stack_is_sorted(t_stack *stack)
+{
+	t_stack	*current;
+
+	if (!stack)
+		return (1);
+	current = stack;
+	while (current && (*current).next)
+	{
+		if ((*current).value > (*(*current).next).value)
+			return (0);
+		current = (*current).next;
+	}
+	return (1);
 }
 
 void	setup_stack(t_stack **stack, char **argv, int argc)
@@ -33,12 +59,6 @@ void	setup_stack(t_stack **stack, char **argv, int argc)
 		search_for_duplicate(*stack, nbr, &has_error);
 		push(stack, nbr);
 		if (has_error || !*stack)
-		{
-			clear_stack(stack);
-			ft_putstr(RED, STDERR_FILENO);
-			ft_putstr("Error\n", STDERR_FILENO);
-			ft_putstr(RESET, STDERR_FILENO);
-			exit(1);
-		}
+			wipe(stack, NULL);
 	}
 }
