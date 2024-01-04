@@ -102,7 +102,7 @@ $(NAME):	$(OBJS) $(OBJS_MAIN)
 			@$(CC) $(CFLAGS) $(DFLAGS) -I $(INCLUDE_PATH) -o $@ $^
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Building program:" "$(CYAN)" $@ "$(GREEN)" "[✓]" "$(RESET)"
 
--include $(DEPS) $(EXT_DEPS) $(DEPS_MAIN)
+-include $(DEPS) $(EXT_DEPS) $(DEPS_BMAIN)
 $(BNAME):	$(OBJS) $(EXT_OBJS) $(OBJS_BMAIN)
 			@$(CC) $(CFLAGS) $(DFLAGS) -I $(INCLUDE_PATH) -o $@ $^
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Building program:" "$(CYAN)" $@ "$(GREEN)" "[✓]" "$(RESET)"
