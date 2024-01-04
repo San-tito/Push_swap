@@ -6,7 +6,7 @@
 <h3>◦ Developed with the software and tools below.</h3>
 
 <p align="center">
-
+<img src="https://img.shields.io/badge/C-A8B9CC.svg?style=flat-square&logo=C&logoColor=black" alt="C" />
 </p>
 </div>
 
@@ -47,6 +47,12 @@ HTTPStatus Exception: 401
 
 ```sh
 └── /
+    ├── Makefile
+    ├── include/
+    │   └── push_swap.h
+    └── src/
+        ├── operations.c
+        └── push_swap.c
 
 ```
 
@@ -55,6 +61,30 @@ HTTPStatus Exception: 401
 
 ## ⚙️ Modules
 
+<details closed><summary>Root</summary>
+
+| File                    | Summary                   |
+| ---                     | ---                       |
+| [Makefile]({file_path}) | HTTPStatus Exception: 401 |
+
+</details>
+
+<details closed><summary>Src</summary>
+
+| File                        | Summary                   |
+| ---                         | ---                       |
+| [operations.c]({file_path}) | HTTPStatus Exception: 401 |
+| [push_swap.c]({file_path})  | HTTPStatus Exception: 401 |
+
+</details>
+
+<details closed><summary>Include</summary>
+
+| File                       | Summary                   |
+| ---                        | ---                       |
+| [push_swap.h]({file_path}) | HTTPStatus Exception: 401 |
+
+</details>
 
 ---
 
@@ -84,18 +114,18 @@ cd
 
 3. Install the dependencies:
 ```sh
-► INSERT-TEXT
+gcc -o myapp main.c
 ```
 
 ### 🤖 Running 
 
 ```sh
-► INSERT-TEXT
+./myapp
 ```
 
 ### 🧪 Tests
 ```sh
-► INSERT-TEXT
+/* No common unit test framework in C */
 ```
 
 ---
