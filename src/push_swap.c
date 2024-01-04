@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:51:19 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/04 15:07:55 by santito          ###   ########.fr       */
+/*   Updated: 2024/01/04 16:37:06 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ int	main(int argc, char **argv)
 		return (0);
 	setup_stack(&a, argv, argc);
 	printStacks(a, b);
-	ra(&a);
-	printStacks(a, b);
-	pb(&a, &b);
+	rra(&a);	
 	printStacks(a, b);
 	clear_stack(&a);
 	return (0);
