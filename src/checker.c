@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:56:24 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/04 19:42:11 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/04 20:07:05 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ static int	ft_strcmp(const char *s1, const char *s2)
 
 static void	exec_instruction(t_stack **a, t_stack **b, char *instruction)
 {
-	if (!ft_strcmp(instruction, "pa\n"))
-		pa(a, b);
-	else if (!ft_strcmp(instruction, "pb\n"))
-		pb(b, a);
-	else if (!ft_strcmp(instruction, "sa\n"))
-		sa(a);
+	if (!ft_strcmp(instruction, "sa\n"))
+		sa(a, b);
 	else if (!ft_strcmp(instruction, "sb\n"))
-		sb(b);
+		sb(b, a);
 	else if (!ft_strcmp(instruction, "ss\n"))
 		ss(a, b);
+	else if (!ft_strcmp(instruction, "pa\n"))
+		pa(a);
+	else if (!ft_strcmp(instruction, "pb\n"))
+		pb(b);
 	else if (!ft_strcmp(instruction, "ra\n"))
 		ra(a);
 	else if (!ft_strcmp(instruction, "rb\n"))
