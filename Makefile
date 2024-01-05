@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/04 20:17:41 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/05 02:45:45 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -80,6 +80,8 @@ RESET       	= \033[m
 
 all: banner $(NAME) 
 
+bonus:	banner $(BNAME)
+
 banner:
 	@printf "%b" "$(PURPLE)"
 	@echo
@@ -106,8 +108,6 @@ $(NAME):	$(OBJS) $(OBJS_MAIN)
 $(BNAME):	$(OBJS) $(EXT_OBJS) $(OBJS_BMAIN)
 			@$(CC) $(CFLAGS) $(DFLAGS) -I $(INCLUDE_PATH) -o $@ $^
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Building program:" "$(CYAN)" $@ "$(GREEN)" "[✓]" "$(RESET)"
-
-bonus:		banner $(BNAME)
 			
 objs/%.o: 	$(SRCS_PATH)/%.c $(HEADER) Makefile
 			@mkdir -p $(dir $@)
