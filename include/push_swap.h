@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 02:19:47 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 10:41:30 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define RESET "\033[m"
 
 /* ************************************************************************** */
-/*                                Stack definition                            */
+/*                           Definition of the Stack Structure                */
 /* ************************************************************************** */
 typedef struct s_stack
 {
@@ -38,7 +38,7 @@ typedef struct s_operation
 }					t_operation;
 
 /* ************************************************************************** */
-/*                          Argument parsing functions                        */
+/*                          Argument Parsing Functions                        */
 /* ************************************************************************** */
 int					ft_atoi(char *str, int *has_error);
 void				validate_syntax(char *str, int *has_error);
@@ -46,7 +46,7 @@ void				search_for_duplicate(t_stack *stack, int value,
 						int *has_error);
 
 /* ************************************************************************** */
-/*                              Stack methods functions                       */
+/*                              Stack Methods                                 */
 /* ************************************************************************** */
 void				push(t_stack **stack, int value);
 void				pop(t_stack **stack);
@@ -54,12 +54,20 @@ void				clear_stack(t_stack **stack);
 int					size(t_stack **stack);
 
 /* ************************************************************************** */
-/*                               Setup stack functions                        */
+/*                               Stack Setup                                  */
 /* ************************************************************************** */
 void				setup_stack(t_stack **stack, char **argv, int argc);
 int					stack_is_sorted(t_stack *stack);
+t_operation			*init_instructions(void);
 void				wipe(t_stack **a, t_stack **b);
+
+/* ************************************************************************** */
+/*                           Output-related Functions                         */
+/* ************************************************************************** */
 void				ft_putstr(char *s, int fd);
+void				display_colored(char *s, char *color, int fd);
+void				perform_and_log(t_stack **a, t_stack **b,
+						t_operation instruction);
 
 /* ************************************************************************** */
 /*                                Operations                                  */

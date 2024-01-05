@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/05 02:45:45 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/05 10:29:20 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -34,7 +34,7 @@ HEADER	= $(INCLUDE_PATH)/push_swap.h
 
 EXT_HEADER  = $(EXT_PATH)/get_next_line.h
 
-SRCS =	data_parsing.c push.c reverse.c rotate.c setup_stack.c stack_methods.c swap.c
+SRCS = data_parsing.c instructions.c output.c push.c reverse.c rotate.c setup_stack.c stack_methods.c swap.c
 
 EXT_SRCS = get_next_line.c get_next_line_utils.c
 

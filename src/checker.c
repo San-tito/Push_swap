@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:56:24 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 02:32:03 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 10:36:28 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,18 @@ static int	ft_strcmp(const char *s1, const char *s2)
 
 static void	exec_instruction(t_stack **a, t_stack **b, char *instruction)
 {
-	const t_operation	instructions[] = {{"sa\n", sa}, {"sb\n", sb}, {"ss\n",
-			ss}, {"pa\n", pa}, {"pb\n", pb}, {"ra\n", ra}, {"rb\n", rb},
-			{"rr\n", rr}, {"rra\n", rra}, {"rrb\n", rrb}, {"rrr\n", rrr}};
-	size_t				i;
+	t_operation	*instructions;
+	int			i;
 
+	instructions = init_instructions();
 	i = 0;
-	while (i < (sizeof(instructions) / sizeof(t_operation)))
+	while (i < 11)
 	{
 		if (!ft_strcmp(instruction, (*(instructions + i)).order))
 			return ((*(instructions + i)).command(a, b));
 		i++;
 	}
 	wipe(a, b);
-}
-
-static void	ok(void)
-{
-	ft_putstr(GREEN, STDOUT_FILENO);
-	ft_putstr("OK\n", STDOUT_FILENO);
-	ft_putstr(RESET, STDOUT_FILENO);
-}
-
-static void	ko(void)
-{
-	ft_putstr(RED, STDOUT_FILENO);
-	ft_putstr("KO\n", STDOUT_FILENO);
-	ft_putstr(RESET, STDOUT_FILENO);
 }
 
 int	main(int argc, char **argv)
@@ -68,12 +53,14 @@ int	main(int argc, char **argv)
 	while (line)
 	{
 		exec_instruction(&a, &b, line);
+		free(line);
 		line = get_next_line(STDIN_FILENO);
 	}
 	if (stack_is_sorted(a) && !b)
-		ok();
+		display_colored("OK\n", GREEN, STDOUT_FILENO);
 	else
-		ko();
+		display_colored("KO\n", RED, STDOUT_FILENO);
 	clear_stack(&a);
+	clear_stack(&b);
 	return (0);
 }
