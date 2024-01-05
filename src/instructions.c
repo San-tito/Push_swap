@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:27:28 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 11:28:00 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 11:34:07 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 static void	pa_command(t_stack **a, t_stack **b)
 {
 	pa(a, b);
-	if (!a)
+	if (!*a)
 		wipe(a, b);
 }
 
 static void	pb_command(t_stack **a, t_stack **b)
 {
 	pb(a, b);
-	if (!b)
+	if (!*b)
 		wipe(a, b);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:51:19 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 11:24:55 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 11:33:05 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int	main(int argc, char **argv)
 		return (0);
 	setup_stack(&a, argv, argc);
 	insertion_sort(&a, &b);
+	clear_stack(&a);
+	clear_stack(&b);
 	return (0);
 }
