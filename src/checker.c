@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:56:24 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 02:29:13 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 02:32:03 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	exec_instruction(t_stack **a, t_stack **b, char *instruction)
 	size_t				i;
 
 	i = 0;
-	while (i < sizeof(instructions))
+	while (i < (sizeof(instructions) / sizeof(t_operation)))
 	{
 		if (!ft_strcmp(instruction, (*(instructions + i)).order))
 			return ((*(instructions + i)).command(a, b));
