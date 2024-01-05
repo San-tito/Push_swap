@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:56:24 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/04 20:08:54 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 02:29:13 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,19 @@ static int	ft_strcmp(const char *s1, const char *s2)
 
 static void	exec_instruction(t_stack **a, t_stack **b, char *instruction)
 {
-	if (!ft_strcmp(instruction, "sa\n"))
-		sa(a);
-	else if (!ft_strcmp(instruction, "sb\n"))
-		sb(b);
-	else if (!ft_strcmp(instruction, "ss\n"))
-		ss(a, b);
-	else if (!ft_strcmp(instruction, "pa\n"))
-		pa(a, b);
-	else if (!ft_strcmp(instruction, "pb\n"))
-		pb(a, b);
-	else if (!ft_strcmp(instruction, "ra\n"))
-		ra(a);
-	else if (!ft_strcmp(instruction, "rb\n"))
-		rb(b);
-	else if (!ft_strcmp(instruction, "rr\n"))
-		rr(a, b);
-	else if (!ft_strcmp(instruction, "rra\n"))
-		rra(a);
-	else if (!ft_strcmp(instruction, "rrb\n"))
-		rrb(b);
-	else if (!ft_strcmp(instruction, "rrr\n"))
-		rrr(a, b);
-	else
-		wipe(a, b);
+	const t_operation	instructions[] = {{"sa\n", sa}, {"sb\n", sb}, {"ss\n",
+			ss}, {"pa\n", pa}, {"pb\n", pb}, {"ra\n", ra}, {"rb\n", rb},
+			{"rr\n", rr}, {"rra\n", rra}, {"rrb\n", rrb}, {"rrr\n", rrr}};
+	size_t				i;
+
+	i = 0;
+	while (i < sizeof(instructions))
+	{
+		if (!ft_strcmp(instruction, (*(instructions + i)).order))
+			return ((*(instructions + i)).command(a, b));
+		i++;
+	}
+	wipe(a, b);
 }
 
 static void	ok(void)

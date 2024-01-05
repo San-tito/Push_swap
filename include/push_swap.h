@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/04 19:50:11 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 02:19:47 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef struct s_stack
 	int				value;
 	struct s_stack	*next;
 }					t_stack;
+
+typedef struct s_operation
+{
+	char			*order;
+	void			(*command)(t_stack **, t_stack **);
+}					t_operation;
 
 /* ************************************************************************** */
 /*                          Argument parsing functions                        */
@@ -58,16 +64,16 @@ void				ft_putstr(char *s, int fd);
 /* ************************************************************************** */
 /*                                Operations                                  */
 /* ************************************************************************** */
-void				sa(t_stack **a);
-void				sb(t_stack **b);
+void				sa(t_stack **a, t_stack **b);
+void				sb(t_stack **a, t_stack **b);
 void				ss(t_stack **a, t_stack **b);
 void				pa(t_stack **a, t_stack **b);
 void				pb(t_stack **a, t_stack **b);
-void				ra(t_stack **a);
-void				rb(t_stack **b);
+void				ra(t_stack **a, t_stack **b);
+void				rb(t_stack **a, t_stack **b);
 void				rr(t_stack **a, t_stack **b);
-void				rra(t_stack **a);
-void				rrb(t_stack **b);
+void				rra(t_stack **a, t_stack **b);
+void				rrb(t_stack **a, t_stack **b);
 void				rrr(t_stack **a, t_stack **b);
 
 #endif

@@ -6,17 +6,18 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 18:19:47 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/04 16:37:38 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 02:03:17 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_stack **a)
+void	rra(t_stack **a, t_stack **b)
 {
 	t_stack	*current;
 	t_stack	*top;
 
+	(void)b;
 	if (!*a)
 		return ;
 	current = *a;
@@ -28,11 +29,12 @@ void	rra(t_stack **a)
 	*a = top;
 }
 
-void	rrb(t_stack **b)
+void	rrb(t_stack **a, t_stack **b)
 {
 	t_stack	*current;
 	t_stack	*top;
 
+	(void)a;
 	if (!*b)
 		return ;
 	current = *b;
@@ -46,6 +48,6 @@ void	rrb(t_stack **b)
 
 void	rrr(t_stack **a, t_stack **b)
 {
-	rra(a);
-	rrb(b);
+	rra(a, b);
+	rrb(a, b);
 }
