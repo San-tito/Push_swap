@@ -6,35 +6,20 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:51:19 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 02:05:18 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 11:24:55 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	printStacks(t_stack *stackA, t_stack *stackB)
+void	insertion_sort(t_stack **a, t_stack **b)
 {
-	while (stackA || stackB)
-	{
-		if (stackA)
-		{
-			printf("%d ", stackA->value);
-			stackA = stackA->next;
-		}
-		else
-			printf("  ");
-		if (stackB)
-		{
-			printf("%d ", stackB->value);
-			stackB = stackB->next;
-		}
-		else
-			printf("  ");
-		printf("\n");
-	}
-	printf("_ _\n");
-	printf("a b\n");
-	printf("\n");
+	t_operation	*instructions;
+
+	instructions = init_instructions();
+	perform_and_log(a, b, instructions[RA]);
+	perform_and_log(a, b, instructions[RRA]);
+	perform_and_log(a, b, instructions[PB]);
 }
 
 int	main(int argc, char **argv)
@@ -47,9 +32,6 @@ int	main(int argc, char **argv)
 	if (argc < 3)
 		return (0);
 	setup_stack(&a, argv, argc);
-	printStacks(a, b);
-	rra(&a, &b);	
-	printStacks(a, b);
-	clear_stack(&a);
+	insertion_sort(&a, &b);
 	return (0);
 }

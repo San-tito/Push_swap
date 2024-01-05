@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 10:41:30 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 11:18:26 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,20 @@ void				rr(t_stack **a, t_stack **b);
 void				rra(t_stack **a, t_stack **b);
 void				rrb(t_stack **a, t_stack **b);
 void				rrr(t_stack **a, t_stack **b);
+
+/* ************************************************************************** */
+/*                           Macros for Command Indices                       */
+/* ************************************************************************** */
+# define SA 0
+# define SB 1
+# define SS 2
+# define PA 3
+# define PB 4
+# define RA 5
+# define RB 6
+# define RR 7
+# define RRA 8
+# define RRB 9
+# define RRR 10
 
 #endif

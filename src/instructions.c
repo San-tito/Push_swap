@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:27:28 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 10:44:19 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/05 11:28:00 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,52 @@ static void	pb_command(t_stack **a, t_stack **b)
 		wipe(a, b);
 }
 
+void	printStacks(t_stack *stackA, t_stack *stackB)
+{
+	while (stackA || stackB)
+	{
+		if (stackA)
+		{
+			printf("%d ", stackA->value);
+			stackA = stackA->next;
+		}
+		else
+			printf("  ");
+		if (stackB)
+		{
+			printf("%d ", stackB->value);
+			stackB = stackB->next;
+		}
+		else
+			printf("  ");
+		printf("\n");
+	}
+	printf("_ _\n");
+	printf("a b\n");
+	printf("\n");
+}
+
 void	perform_and_log(t_stack **a, t_stack **b, t_operation instruction)
 {
 	ft_putstr(instruction.order, STDOUT_FILENO);
 	instruction.command(a, b);
+	// printStacks(*a, *b);
 }
 
 t_operation	*init_instructions(void)
 {
 	static t_operation	instructions[11];
 
-	*(instructions + 0) = (t_operation){"sa\n", sa};
-	*(instructions + 1) = (t_operation){"sb\n", sb};
-	*(instructions + 2) = (t_operation){"ss\n", ss};
-	*(instructions + 3) = (t_operation){"pa\n", pa_command};
-	*(instructions + 4) = (t_operation){"pb\n", pb_command};
-	*(instructions + 5) = (t_operation){"ra\n", ra};
-	*(instructions + 6) = (t_operation){"rb\n", rb};
-	*(instructions + 7) = (t_operation){"rr\n", rr};
-	*(instructions + 8) = (t_operation){"rra\n", rra};
-	*(instructions + 9) = (t_operation){"rrb\n", rrb};
-	*(instructions + 10) = (t_operation){"rrr\n", rrr};
+	instructions[SA] = (t_operation){"sa\n", sa};
+	instructions[SB] = (t_operation){"sb\n", sb};
+	instructions[SS] = (t_operation){"ss\n", ss};
+	instructions[PA] = (t_operation){"pa\n", pa_command};
+	instructions[PB] = (t_operation){"pb\n", pb_command};
+	instructions[RA] = (t_operation){"ra\n", ra};
+	instructions[RB] = (t_operation){"rb\n", rb};
+	instructions[RR] = (t_operation){"rr\n", rr};
+	instructions[RRA] = (t_operation){"rra\n", rra};
+	instructions[RRB] = (t_operation){"rrb\n", rrb};
+	instructions[RRR] = (t_operation){"rrr\n", rrr};
 	return (instructions);
 }
