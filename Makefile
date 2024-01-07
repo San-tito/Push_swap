@@ -17,8 +17,8 @@
 NAME		= push_swap
 BNAME		= checker
 CC 		= gcc
-CFLAGS	= -Wall -Wextra -Werror
-DFLAGS	= -MMD -MF $(@:.o=.d)
+CFLAGS		= -Wall -Wextra -Werror
+DFLAGS		= -MMD -MF $(@:.o=.d)
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
@@ -30,17 +30,17 @@ EXT_PATH	= ./external
 
 INCLUDE_PATH	= ./include
 
-HEADER	= $(INCLUDE_PATH)/push_swap.h
+HEADER		= $(INCLUDE_PATH)/push_swap.h
 
-EXT_HEADER  = $(EXT_PATH)/get_next_line.h
+EXT_HEADER  	= $(EXT_PATH)/get_next_line.h
 
-SRCS = data_parsing.c instructions.c output.c push.c reverse.c rotate.c setup_stack.c sort.c stack_methods.c swap.c
+SRCS 		= data_parsing.c instructions.c output.c push.c reverse.c rotate.c setup_stack.c sort.c stack_methods.c swap.c
 
-EXT_SRCS = get_next_line.c get_next_line_utils.c
+EXT_SRCS 	= get_next_line.c get_next_line_utils.c
 
-MAIN = push_swap.c 
+MAIN 		= push_swap.c 
 
-BMAIN = checker.c
+BMAIN 		= checker.c
 
 ################################################################################
 #                                  Makefile  objs                              #
