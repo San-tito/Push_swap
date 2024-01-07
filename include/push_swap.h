@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/05 11:18:26 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/07 15:16:28 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,12 @@ void				wipe(t_stack **a, t_stack **b);
 /* ************************************************************************** */
 void				ft_putstr(char *s, int fd);
 void				display_colored(char *s, char *color, int fd);
-void				perform_and_log(t_stack **a, t_stack **b,
-						t_operation instruction);
+void				perform_and_log(t_stack **a, t_stack **b, int index);
+
+/* ************************************************************************** */
+/*                               Sorting Algorithm                            */
+/* ************************************************************************** */
+void				insertion_sort(t_stack **a, t_stack **b);
 
 /* ************************************************************************** */
 /*                                Operations                                  */

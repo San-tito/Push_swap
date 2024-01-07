@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:22:46 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/03 18:11:25 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/07 15:51:54 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ void	validate_syntax(char *str, int *has_error)
 		str++;
 	if (*str == '+' || *str == '-')
 		str++;
-	while (ft_isdigit(*str))
-		str++;
+	if (!ft_isdigit(*str))
+		*has_error = 1;
+	else
+		while (ft_isdigit(*str))
+			str++;
 	if (*str)
 		*has_error = 1;
 }

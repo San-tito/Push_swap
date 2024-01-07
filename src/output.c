@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 09:58:28 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/06 20:37:11 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/07 15:11:53 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	display_colored(char *s, char *color, int fd)
 	ft_putstr(RESET, fd);
 }
 
-static void	ft_putstacks(t_stack *a, t_stack *b)
+void	ft_putstacks(t_stack *a, t_stack *b)
 {
 	ft_putstr("\n", STDOUT_FILENO);
 	while (a || b)
@@ -63,6 +63,7 @@ static void	ft_putstacks(t_stack *a, t_stack *b)
 		if (a)
 		{
 			ft_putnbr((*a).value, STDOUT_FILENO);
+			ft_putstr(" ", STDOUT_FILENO);
 			a = (*a).next;
 		}
 		else
@@ -70,6 +71,7 @@ static void	ft_putstacks(t_stack *a, t_stack *b)
 		if (b)
 		{
 			ft_putnbr((*b).value, STDOUT_FILENO);
+			ft_putstr(" ", STDOUT_FILENO);
 			b = (*b).next;
 		}
 		else
@@ -81,9 +83,14 @@ static void	ft_putstacks(t_stack *a, t_stack *b)
 	ft_putstr("\n", STDOUT_FILENO);
 }
 
-void	perform_and_log(t_stack **a, t_stack **b, t_operation instruction)
+void	perform_and_log(t_stack **a, t_stack **b, int index)
 {
+	t_operation	*instructions;
+	t_operation	instruction;
+
+	instructions = init_instructions();
+	instruction = *(instructions + index);
 	ft_putstr(instruction.order, STDOUT_FILENO);
 	instruction.command(a, b);
-	ft_putstacks(*a, *b);
+	//ft_putstacks(*a, *b);
 }
