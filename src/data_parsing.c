@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:22:46 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/07 15:51:54 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/08 12:34:52 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ void	validate_syntax(char *str, int *has_error)
 
 void	search_for_duplicate(t_stack *stack, int value, int *has_error)
 {
-	t_stack	*temp;
+	t_stack	*current;
 
-	temp = stack;
-	while (temp)
+	current = stack;
+	while (current)
 	{
-		if (temp->value == value)
+		if ((*current).value == value)
 			*has_error = 1;
-		temp = temp->next;
+		current = (*current).next;
 	}
 }

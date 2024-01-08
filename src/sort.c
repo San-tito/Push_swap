@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/07 21:09:54 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/08 12:17:18 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ t_stack	*find_max(t_stack *stack)
 	return (max);
 }
 
-void	insertion_sort(t_stack **a, t_stack **b)
+void	insertion_sort(t_stack **a, t_stack **b, int chunk_size)
 {
 	t_stack	*min;
 
-	// int		chunk_size;
-	// chunk_size = 20 + ((size(a) - 100) / 16);
+	(void)chunk_size;
 	while (!stack_is_sorted(*a))
 	{
 		min = find_min(*a);
