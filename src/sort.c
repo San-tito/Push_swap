@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/08 12:17:18 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/08 16:33:32 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,13 @@ t_stack	*find_max(t_stack *stack)
 	return (max);
 }
 
+t_stack	*smash(t_stack **stack, int chunk_size)
+{
+}
+
 void	insertion_sort(t_stack **a, t_stack **b, int chunk_size)
 {
+	t_stack	*chunk;
 	t_stack	*min;
 
 	(void)chunk_size;
