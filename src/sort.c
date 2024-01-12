@@ -6,13 +6,13 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/08 16:33:32 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/12 13:25:41 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_index(t_stack *stack, t_stack *wanted)
+int	index_of(t_stack *stack, int wanted)
 {
 	int		index;
 	t_stack	*current;
@@ -21,7 +21,7 @@ static int	get_index(t_stack *stack, t_stack *wanted)
 	current = stack;
 	while (current)
 	{
-		if (current == wanted)
+		if ((*current).value == wanted)
 			break ;
 		current = (*current).next;
 		index++;
@@ -29,7 +29,7 @@ static int	get_index(t_stack *stack, t_stack *wanted)
 	return (index);
 }
 
-t_stack	*find_min(t_stack *stack)
+t_stack	*minimum(t_stack *stack)
 {
 	t_stack	*current;
 	t_stack	*min;
@@ -38,45 +38,48 @@ t_stack	*find_min(t_stack *stack)
 	min = current;
 	while (current)
 	{
-		if (current->value < min->value)
+		if ((*current).value < (*min).value)
 			min = current;
 		current = current->next;
 	}
 	return (min);
 }
 
-t_stack	*find_max(t_stack *stack)
+int	sorted_index_of(t_stack *stack, int index)
 {
-	t_stack	*max;
+	t_stack	*min;
+	t_stack	*prev;
 	t_stack	*current;
 
-	max = stack;
-	current = (*stack).next;
-	while (current)
+	current = stack;
+	min = minimum(current);
+	while (current && index--)
 	{
-		if ((*stack).value < (*max).value)
-			max = current;
-		current = (*current).next;
+		if (min == current)
+			current = (*current).next;
+		else
+		{
+			prev = current;
+			while ((*prev).next != min)
+				prev = (*prev).next;
+			(*prev).next = (*min).next;
+		}
+		min = minimum(current);
 	}
-	return (max);
+	return (index_of(stack, (*min).value));
 }
 
-t_stack	*smash(t_stack **stack, int chunk_size)
+void	insertion_sort(t_stack **a, t_stack **b, int chunk)
 {
-}
-
-void	insertion_sort(t_stack **a, t_stack **b, int chunk_size)
-{
-	t_stack	*chunk;
 	t_stack	*min;
 
-	(void)chunk_size;
-	while (!stack_is_sorted(*a))
+	(void)chunk;
+	while (*a)
 	{
-		min = find_min(*a);
+		min = minimum(*a);
 		while (*a != min)
 		{
-			if ((size(a) / 2) < get_index(*a, min))
+			if ((size(a) / 2) < index_of(*a, (*min).value))
 				perform_and_log(a, b, RRA);
 			else
 				perform_and_log(a, b, RA);
