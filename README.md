@@ -1,13 +1,15 @@
 <div align="center">
 <h1 align="center">
-<img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" />
-<br></h1>
-<h3>◦ HTTPStatus Exception: 401</h3>
-<h3>◦ Developed with the software and tools below.</h3>
+<img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/push_swapm.png" width="150" />
+<br>Push_swap</h1>
+<h3>◦ Because Swap_push isn’t as natural</h3>
 
 <p align="center">
-<img src="https://img.shields.io/badge/C-A8B9CC.svg?style=flat-square&logo=C&logoColor=black" alt="C" />
+<img src="https://img.shields.io/badge/Barcelona-100000?style=flat-square&logo=42&logoColor=white&labelColor=000000&color=000000" alt="42 Barcelona" />
 </p>
+<img src="https://img.shields.io/github/actions/workflow/status/San-tito/ft_printf/c.yml?style=flat-square" alt="GitHub%20Actions" />
+<img src="https://img.shields.io/github/languages/code-size/San-tito/ft_printf?style=flat-square" alt="GitHub code size" />
+<img src="https://img.shields.io/github/languages/top/San-tito/ft_printf?style=flat-square" alt="GitHub top language" />
 </div>
 
 ---
