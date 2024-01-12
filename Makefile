@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/07 22:56:59 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/12 16:40:20 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -111,12 +111,12 @@ $(BNAME):	$(OBJS) $(EXT_OBJS) $(OBJS_BMAIN)
 			
 objs/%.o: 	$(SRCS_PATH)/%.c $(HEADER) Makefile
 			@mkdir -p $(dir $@)
-			@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE_PATH)
+			@$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I $(INCLUDE_PATH)
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Compiling:" "$(CYAN)" $< "$(GREEN)" "[✓]" "$(RESET)"
 
 objs/%.o: 	$(EXT_PATH)/%.c $(EXT_HEADER) Makefile
 			@mkdir -p $(dir $@)
-			@$(CC) $(CFLAGS) -c $< -o $@ -I $(EXT_PATH)
+			@$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I $(EXT_PATH)
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Compiling:" "$(CYAN)" $< "$(GREEN)" "[✓]" "$(RESET)"
 
 clean:		banner
