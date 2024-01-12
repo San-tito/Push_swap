@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/12 13:25:41 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/12 14:52:42 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,17 @@ int	sorted_index_of(t_stack *stack, int index)
 	return (index_of(stack, (*min).value));
 }
 
+void	cheaper_move_to_top(t_stack **a, t_stack **b, t_stack *element)
+{
+	while (*a != element)
+	{
+		if ((size(a) / 2) < index_of(*a, (*element).value))
+			perform_and_log(a, b, RRA);
+		else
+			perform_and_log(a, b, RA);
+	}
+}
+
 void	insertion_sort(t_stack **a, t_stack **b, int chunk)
 {
 	t_stack	*min;
@@ -77,13 +88,7 @@ void	insertion_sort(t_stack **a, t_stack **b, int chunk)
 	while (*a)
 	{
 		min = minimum(*a);
-		while (*a != min)
-		{
-			if ((size(a) / 2) < index_of(*a, (*min).value))
-				perform_and_log(a, b, RRA);
-			else
-				perform_and_log(a, b, RA);
-		}
+		cheaper_move_to_top(a, b, min);
 		perform_and_log(a, b, PB);
 	}
 	while (*b)
