@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:58:16 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/08 12:11:55 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/13 16:21:22 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,19 @@ void	push(t_stack **stack, int value)
 	(*new).value = value;
 	(*new).next = *stack;
 	*stack = new;
+}
+
+t_stack	*copy_stack(t_stack *stack)
+{
+	t_stack	*new;
+	t_stack	*current;
+
+	new = NULL;
+	current = stack;
+	while (current)
+	{
+		push(&new, (*current).value);
+		current = (*current).next;
+	}
+	return (new);
 }

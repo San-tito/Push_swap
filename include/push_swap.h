@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/12 11:54:54 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/13 16:25:04 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void				setup_stack(t_stack **stack, char **argv, int argc);
 int					stack_is_sorted(t_stack *stack);
 t_operation			*init_instructions(void);
 void				wipe(t_stack **a, t_stack **b);
+t_stack				*copy_stack(t_stack *stack);
 
 /* ************************************************************************** */
 /*                           Output-related Functions                         */

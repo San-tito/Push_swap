@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/12 16:19:37 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/13 16:36:08 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_stack	*minimum(t_stack *stack)
 	return (min);
 }
 
-int	sorted_index_of(t_stack *stack, int index)
+int	sorted_value_at(t_stack *stack, int index)
 {
 	t_stack	*min;
 	t_stack	*prev;
