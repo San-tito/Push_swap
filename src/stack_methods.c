@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:58:16 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/13 16:21:22 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/13 19:10:58 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ t_stack	*copy_stack(t_stack *stack)
 	while (current)
 	{
 		push(&new, (*current).value);
+		if (!new)
+			return (NULL);
 		current = (*current).next;
 	}
 	return (new);

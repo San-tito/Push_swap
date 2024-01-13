@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/13 16:36:08 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/13 19:23:42 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ t_stack	*minimum(t_stack *stack)
 
 int	sorted_value_at(t_stack *stack, int index)
 {
+	int		value;
 	t_stack	*min;
 	t_stack	*prev;
 	t_stack	*current;
 
-	current = stack;
+	current = copy_stack(stack);
+	if (!current)
+		return (-1);
 	min = minimum(current);
 	while (current && index--)
 	{
@@ -64,9 +67,12 @@ int	sorted_value_at(t_stack *stack, int index)
 				prev = (*prev).next;
 			(*prev).next = (*min).next;
 		}
+		free(min);
 		min = minimum(current);
 	}
-	return (index_of(stack, (*min).value));
+	value = (*min).value;
+	clear_stack(&current);
+	return (index_of(stack, value));
 }
 
 void	cheaper_move_to_top(t_stack **a, t_stack **b, t_stack *element)
@@ -80,11 +86,15 @@ void	cheaper_move_to_top(t_stack **a, t_stack **b, t_stack *element)
 	}
 }
 
+#include <stdio.h>
+
 void	insertion_sort(t_stack **a, t_stack **b, int chunk)
 {
 	t_stack	*min;
 
 	(void)chunk;
+	printf("%i\n", sorted_value_at(*a, 3));
+	printf("%i\n", sorted_value_at(*a, 3));
 	while (*a)
 	{
 		min = minimum(*a);
