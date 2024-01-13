@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/13 19:23:42 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/13 19:37:03 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,10 @@ int	sorted_value_at(t_stack *stack, int index)
 	min = minimum(current);
 	while (current && index--)
 	{
-		if (min == current)
-			current = (*current).next;
-		else
-		{
-			prev = current;
-			while ((*prev).next != min)
-				prev = (*prev).next;
-			(*prev).next = (*min).next;
-		}
+		prev = current;
+		while ((*prev).next != min)
+			prev = (*prev).next;
+		(*prev).next = (*min).next;
 		free(min);
 		min = minimum(current);
 	}
@@ -86,15 +81,11 @@ void	cheaper_move_to_top(t_stack **a, t_stack **b, t_stack *element)
 	}
 }
 
-#include <stdio.h>
-
 void	insertion_sort(t_stack **a, t_stack **b, int chunk)
 {
 	t_stack	*min;
 
 	(void)chunk;
-	printf("%i\n", sorted_value_at(*a, 3));
-	printf("%i\n", sorted_value_at(*a, 3));
 	while (*a)
 	{
 		min = minimum(*a);
