@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:46:49 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/14 17:54:32 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/14 18:11:38 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,11 @@ void	shaker_sort(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
 
+	if (size(a) == 2 && (**a).value > ((*(**a).next).value))
+	{
+		perform_and_log(a, b, SA);
+		return ;
+	}
 	while (size(a) > 3)
 	{
 		min = minimum(*a);

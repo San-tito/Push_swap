@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/14 17:54:56 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/14 17:57:55 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,15 @@ void	smash_sort(t_stack **a, t_stack **b, int chunk)
 	while (*a)
 	{
 		cheaper_move_to_top(a, b, chunk);
-		smart_move(a, b);
+		max = maximum(*b);
+		while (*b != max)
+		{
+			if ((size(b) / 2) < index_of(*b, (*max).value))
+				perform_and_log(a, b, RRB);
+			else
+				perform_and_log(a, b, RB);
+		}
 		perform_and_log(a, b, PB);
-		// ft_putstacks(*a, *b);
 	}
 	while (*b)
 	{
