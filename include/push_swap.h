@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/13 16:25:04 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/14 17:53:14 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,18 @@ void				ft_putstacks(t_stack *a, t_stack *b);
 /* ************************************************************************** */
 /*                               Sorting Algorithm                            */
 /* ************************************************************************** */
-void				insertion_sort(t_stack **a, t_stack **b, int chunk);
+void				smash_sort(t_stack **a, t_stack **b, int chunk);
+void				shaker_sort(t_stack **a, t_stack **b);
+void				trident_sort(t_stack **a, t_stack **b);
+void				bubble_sort(t_stack *stack);
+
+/* ************************************************************************** */
+/*                                 Sorting Utils                              */
+/* ************************************************************************** */
+t_stack				*maximum(t_stack *stack);
+t_stack				*minimum(t_stack *stack);
+int					sorted_value_at(t_stack **a, t_stack **b, int index);
+int					index_of(t_stack *stack, int wanted);
 
 /* ************************************************************************** */
 /*                                Operations                                  */

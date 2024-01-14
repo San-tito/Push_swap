@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 09:58:28 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/10 23:16:36 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/14 17:23:50 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ void	perform_and_log(t_stack **a, t_stack **b, int index)
 	instruction = *(instructions + index);
 	ft_putstr(instruction.order, STDOUT_FILENO);
 	instruction.command(a, b);
-	// ft_putstacks(*a, NULL);
+	//ft_putstacks(*a, *b);
 }
