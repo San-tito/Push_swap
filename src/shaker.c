@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:46:49 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/14 21:37:58 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/15 09:14:22 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	trident_sort(t_stack **a, t_stack **b)
 	first = (**a).value;
 	second = (*(**a).next).value;
 	third = (*(*(**a).next).next).value;
-	if (first > second && third > second && third > first)
+	if (first < second && third > second && third > first)
 		perform_and_log(a, b, SA);
 	else if (first > second && third > second && first > third)
 		perform_and_log(a, b, RA);
