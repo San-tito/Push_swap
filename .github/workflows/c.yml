@@ -19,11 +19,11 @@ jobs:
       run: make bonus
     - name: Test with 3 elements
       run:  make test ELEMENTS=3 TESTS=1000
-    - name: make test with 5 elements
+    - name: Test with 5 elements
       run:  make test ELEMENTS=5 TESTS=1000
-    - name: make test with 100 elements
+    - name: Test with 100 elements
       run:  make test ELEMENTS=100 TESTS=1000
-    - name: make test with 500 elements
+    - name: Test with 500 elements
       run:  make test ELEMENTS=500 TESTS=1000
 
   norminette:
