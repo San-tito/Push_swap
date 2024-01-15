@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/15 09:19:24 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/15 09:30:25 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -81,9 +81,10 @@ define run_test
 	$(eval ARG := $(shell shuf -i 0-$(ELEMENTS) -n $(ELEMENTS)))
 	$(eval INSTRUCTIONS := $(shell ./$(NAME) $(ARG) | wc -l))
 	@if ./$(NAME) $(ARG) | ./$(BNAME) $(ARG) | grep -q "OK"; then \
-		printf "\n%b%s\n%b%s%s\n%b%s%s%b\n" "$(YELLOW)" "Running Test:" "$(CYAN)" "ARG=" "$(ARG)" "$(PURPLE)" "Instructions:" "$(INSTRUCTIONS)" "$(RESET)"; \
+		printf "\n%b%s\n%b%s%s\n%b%s%s\t%b%s%b\n" "$(YELLOW)" "Running Test:" "$(CYAN)" "ARG=" "$(ARG)" "$(PURPLE)" "Instructions:" "$(INSTRUCTIONS)" "$(GREEN)" "[✓]" "$(RESET)"; \
 	else \
-		$(error "Error in Test: ARG=$(ARG), Instructions=$(INSTRUCTIONS)"); \
+		printf "\n%b%s\n%b%s%s\n%b%s%s\t%b%s%b\n" "$(YELLOW)" "Error in Test:" "$(CYAN)" "ARG=" "$(ARG)" "$(PURPLE)" "Instructions:" "$(INSTRUCTIONS)" "$(RED)" "[✗]" "$(RESET)" >&2; \
+		exit 1; \
 	fi
 endef
 
