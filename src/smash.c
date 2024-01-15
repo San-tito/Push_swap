@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/15 00:09:30 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/15 10:14:07 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	cheaper_move_to_top(t_stack **a, t_stack **b, int chunk)
 		value = sorted_value_at(a, b, chunk);
 		distance = index_of(*a, value);
 		if ((size(a) / 2) < index_of(*a, value))
-			distance = size(a) - index_of(*a, value);
+			distance++;
 		if (distance < min_distance)
 		{
 			min_distance = distance;
@@ -116,14 +116,7 @@ void	smash_sort(t_stack **a, t_stack **b, int chunk)
 	while (*a)
 	{
 		cheaper_move_to_top(a, b, chunk);
-		max = maximum(*b);
-		while (*b != max)
-		{
-			if ((size(b) / 2) < index_of(*b, (*max).value))
-				perform_and_log(a, b, RRB);
-			else
-				perform_and_log(a, b, RB);
-		}
+		smart_move(a, b);
 		perform_and_log(a, b, PB);
 	}
 	while (*b)
