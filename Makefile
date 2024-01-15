@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/15 09:30:25 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/15 09:51:38 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -76,12 +76,14 @@ RESET       	= \033[m
 
 ELEMENTS ?= 3
 TESTS ?= 10
+INSTRUCTIONS_LIST :=
 
 define run_test
 	$(eval ARG := $(shell shuf -i 0-$(ELEMENTS) -n $(ELEMENTS)))
 	$(eval INSTRUCTIONS := $(shell ./$(NAME) $(ARG) | wc -l))
 	@if ./$(NAME) $(ARG) | ./$(BNAME) $(ARG) | grep -q "OK"; then \
 		printf "\n%b%s\n%b%s%s\n%b%s%s\t%b%s%b\n" "$(YELLOW)" "Running Test:" "$(CYAN)" "ARG=" "$(ARG)" "$(PURPLE)" "Instructions:" "$(INSTRUCTIONS)" "$(GREEN)" "[✓]" "$(RESET)"; \
+		$(eval INSTRUCTIONS_LIST += $(INSTRUCTIONS)) \
 	else \
 		printf "\n%b%s\n%b%s%s\n%b%s%s\t%b%s%b\n" "$(YELLOW)" "Error in Test:" "$(CYAN)" "ARG=" "$(ARG)" "$(PURPLE)" "Instructions:" "$(INSTRUCTIONS)" "$(RED)" "[✗]" "$(RESET)" >&2; \
 		exit 1; \
@@ -134,7 +136,15 @@ objs/%.o: 	$(EXT_PATH)/%.c $(EXT_HEADER) Makefile
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Compiling:" "$(CYAN)" $< "$(GREEN)" "[✓]" "$(RESET)"
 
 test:		all bonus
-		$(foreach _, $(shell seq $(TESTS)), $(call run_test))
+			@$(foreach _, $(shell seq $(TESTS)), $(call run_test)) 
+			@$(eval MIN := $(shell echo $(INSTRUCTIONS_LIST) | tr ' ' '\n' | sort -n | head -n 1))
+			@$(eval MAX := $(shell echo $(INSTRUCTIONS_LIST) | tr ' ' '\n' | sort -n | tail -n 1))
+			@$(eval AVERAGE := $(shell echo $(INSTRUCTIONS_LIST) | tr ' ' '\n' | awk '{sum += $$1} END {print sum / NR}'))
+			@printf "\n%b%s%b\n" "$(YELLOW)" "TEST SUMMARY" "$(RESET)"
+			@printf "%b%s\t%b%s%b\n" "$(PURPLE)" "MIN :" "$(CYAN)" "$(MIN)" "$(RESET)"
+			@printf "%b%s\t%b%s%b\n" "$(PURPLE)" "MAX :" "$(CYAN)" "$(MAX)" "$(RESET)"
+			@printf "%b%s\t%b%s%b\n" "$(PURPLE)" "AVG :" "$(CYAN)" "$(AVERAGE)" "$(RESET)"
+		        
 
 clean:		banner
 			@rm -rf objs 
