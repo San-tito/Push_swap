@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/14 16:48:06 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/15 09:09:11 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -17,7 +17,7 @@
 NAME		= push_swap
 BNAME		= checker
 CC 		= gcc
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror 
 DFLAGS		= -MMD -MF $(@:.o=.d)
 
 ################################################################################
@@ -74,6 +74,19 @@ PURPLE      	= \033[0;35m
 CYAN        	= \033[0;36m
 RESET       	= \033[m
 
+ELEMENTS ?= 3
+TESTS ?= 10
+
+define run_test
+	$(eval ARG := $(shell shuf -i 0-$(ELEMENTS) -n $(ELEMENTS)))
+	$(eval INSTRUCTIONS := $(shell ./$(NAME) $(ARG) | wc -l))
+	@if ./$(NAME) $(ARG) | ./$(BNAME) $(ARG) | grep -q "OK"; then \
+		printf "\n%b%s\n%b%s%s\n%b%s%s%b\t%s%b\n" "$(YELLOW)" "Running Test:" "$(CYAN)" "ARG=" "$(ARG)" "$(PURPLE)" "Instructions:" "$(INSTRUCTIONS)" "$(GREEN)" "[✓]" "$(RESET)"; \
+	else \
+		printf "\n%b%s\n%b%s%s\n%b%s%s%b\t%s%b\n" "$(YELLOW)" "Error in Test:" "$(CYAN)" "ARG=" "$(ARG)" "$(PURPLE)" "Instructions:" "$(INSTRUCTIONS)" "$(RED)" "[✗]" "$(RESET)" >&2; \
+	fi
+endef
+
 ################################################################################
 #                                 Makefile rules                               #
 ################################################################################
@@ -119,6 +132,9 @@ objs/%.o: 	$(EXT_PATH)/%.c $(EXT_HEADER) Makefile
 			@$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I $(EXT_PATH)
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Compiling:" "$(CYAN)" $< "$(GREEN)" "[✓]" "$(RESET)"
 
+test:		all bonus
+		$(foreach _, $(shell seq $(TESTS)), $(call run_test))
+
 clean:		banner
 			@rm -rf objs 
 			@printf "%b%-42s%-42b%b%s%b\n" "$(BLUE)" "$@:" "$(CYAN)" "$(GREEN)" "[✓]" "$(RESET)"
@@ -130,6 +146,7 @@ fclean:		banner clean
 re:			fclean all
 
 .PHONY:		all clean fclean re banner bonus
+
 
 
 
