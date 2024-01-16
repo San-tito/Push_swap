@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/15 14:17:00 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/16 01:15:43 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,31 @@ int	sorted_value_at(t_stack **a, t_stack **b, int index)
 
 void	cheaper_move_to_top(t_stack **a, t_stack **b, int chunk)
 {
-	int	min_distance;
-	int	min_value;
-	int	value;
-	int	distance;
+	t_stack	*max;
+	int		min_distance;
+	int		value;
+	int		distance;
 
 	min_distance = size(a);
 	while (chunk--)
 	{
 		value = sorted_value_at(a, b, chunk);
 		distance = index_of(*a, value);
-		if ((size(a) / 2) < index_of(*a, value))
-			distance++;
 		if (distance < min_distance)
-		{
 			min_distance = distance;
-			min_value = value;
-		}
 	}
+	max = maximum(*b);
 	while (min_distance--)
-	{
-		if ((size(a) / 2) < index_of(*a, min_value))
-			perform_and_log(a, b, RRA);
+		if (*b != max)
+			perform_and_log(a, b, RR);
 		else
 			perform_and_log(a, b, RA);
+	while (*b != max)
+	{
+		if ((size(b) / 2) < index_of(*b, (*max).value))
+			perform_and_log(a, b, RRB);
+		else
+			perform_and_log(a, b, RB);
 	}
 }
 
@@ -116,7 +117,6 @@ void	smash_sort(t_stack **a, t_stack **b, int chunk)
 	while (*a)
 	{
 		cheaper_move_to_top(a, b, chunk);
-		smart_move(a, b);
 		perform_and_log(a, b, PB);
 	}
 	while (*b)
