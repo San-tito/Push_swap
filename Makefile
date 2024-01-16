@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/15 09:51:38 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/16 18:10:40 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -25,6 +25,8 @@ DFLAGS		= -MMD -MF $(@:.o=.d)
 ################################################################################
 
 SRCS_PATH	= ./src
+
+OBJS_PATH 	= ./build
 
 EXT_PATH	= ./external
 
@@ -46,21 +48,21 @@ BMAIN 		= checker.c
 #                                  Makefile  objs                              #
 ################################################################################
 
-OBJS		= $(addprefix objs/, ${SRCS:.c=.o})
+OBJS		= $(addprefix $(OBJS_PATH)/, ${SRCS:.c=.o})
 
-EXT_OBJS	= $(addprefix objs/, ${EXT_SRCS:.c=.o})
+EXT_OBJS	= $(addprefix $(OBJS_PATH)/, ${EXT_SRCS:.c=.o})
 
-OBJS_MAIN	= $(addprefix objs/, ${MAIN:.c=.o})
+OBJS_MAIN	= $(addprefix $(OBJS_PATH)/, ${MAIN:.c=.o})
 
-OBJS_BMAIN	= $(addprefix objs/, ${BMAIN:.c=.o})
+OBJS_BMAIN	= $(addprefix $(OBJS_PATH)/, ${BMAIN:.c=.o})
 
-DEPS		= $(addprefix objs/, ${SRCS:.c=.d})
+DEPS		= $(addprefix $(OBJS_PATH)/, ${SRCS:.c=.d})
 
-EXT_DEPS	= $(addprefix objs/, ${EXT_SRCS:.c=.d})
+EXT_DEPS	= $(addprefix $(OBJS_PATH)/, ${EXT_SRCS:.c=.d})
 
-DEPS_MAIN	= $(addprefix objs/, ${MAIN:.c=.d})
+DEPS_MAIN	= $(addprefix $(OBJS_PATH)/, ${MAIN:.c=.d})
 
-DEPS_BMAIN	= $(addprefix objs/, ${BMAIN:.c=.d})
+DEPS_BMAIN	= $(addprefix $(OBJS_PATH)/, ${BMAIN:.c=.d})
 
 ################################################################################
 #                                 Makefile logic                               #
@@ -125,12 +127,12 @@ $(BNAME):	$(OBJS) $(EXT_OBJS) $(OBJS_BMAIN)
 			@$(CC) $(CFLAGS) $(DFLAGS) -I $(INCLUDE_PATH) -o $@ $^
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Building program:" "$(CYAN)" $@ "$(GREEN)" "[✓]" "$(RESET)"
 			
-objs/%.o: 	$(SRCS_PATH)/%.c $(HEADER) Makefile
+$(OBJS_PATH)/%.o: 	$(SRCS_PATH)/%.c $(HEADER) Makefile
 			@mkdir -p $(dir $@)
 			@$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I $(INCLUDE_PATH)
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Compiling:" "$(CYAN)" $< "$(GREEN)" "[✓]" "$(RESET)"
 
-objs/%.o: 	$(EXT_PATH)/%.c $(EXT_HEADER) Makefile
+$(OBJS_PATH)/%.o: 	$(EXT_PATH)/%.c $(EXT_HEADER) Makefile
 			@mkdir -p $(dir $@)
 			@$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I $(EXT_PATH)
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Compiling:" "$(CYAN)" $< "$(GREEN)" "[✓]" "$(RESET)"
@@ -147,7 +149,7 @@ test:		all bonus
 		        
 
 clean:		banner
-			@rm -rf objs 
+			@rm -rf $(OBJS_PATH)
 			@printf "%b%-42s%-42b%b%s%b\n" "$(BLUE)" "$@:" "$(CYAN)" "$(GREEN)" "[✓]" "$(RESET)"
 
 fclean:		banner clean
