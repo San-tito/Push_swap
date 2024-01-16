@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/16 01:18:43 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/16 11:54:16 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,39 +72,6 @@ void	cheaper_move_to_top(t_stack **a, t_stack **b, int chunk)
 			perform_and_log(a, b, RRB);
 		else
 			perform_and_log(a, b, RB);
-	}
-}
-
-void	smart_move(t_stack **a, t_stack **b)
-{
-	t_stack	*current;
-	int		index;
-	int		value;
-	int		difference;
-	int		min_difference;
-
-	min_difference = size(b);
-	current = *b;
-	while (current)
-	{
-		difference = (**a).value - (*current).value;
-		if (difference < min_difference)
-		{
-			min_difference = difference;
-			value = (*current).value;
-		}
-		current = (*current).next;
-	}
-	if (min_difference == size(b))
-		return ;
-	index = index_of(*b, value);
-	while (index)
-	{
-		if ((size(b) / 2) < index)
-			perform_and_log(a, b, RRB);
-		else
-			perform_and_log(a, b, RB);
-		index = index_of(*b, value);
 	}
 }
 
