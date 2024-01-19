@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/16 18:10:40 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/19 13:15:07 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -17,7 +17,7 @@
 NAME		= push_swap
 BNAME		= checker
 CC 		= gcc
-CFLAGS		= -Wall -Wextra -Werror 
+CFLAGS		= -Wall -Wextra -Werror -g
 DFLAGS		= -MMD -MF $(@:.o=.d)
 
 ################################################################################

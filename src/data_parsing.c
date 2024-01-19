@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:22:46 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/08 12:34:52 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/19 13:23:30 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ int	ft_atoi(char *str, int *has_error)
 
 void	validate_syntax(char *str, int *has_error)
 {
+	int	i;
+
 	while (ft_isspace(*str))
 		str++;
 	if (*str == '+' || *str == '-')
 		str++;
-	if (!ft_isdigit(*str))
-		*has_error = 1;
-	else
-		while (ft_isdigit(*str))
-			str++;
-	if (*str)
+	i = 0;
+	while (ft_isdigit(*(str + i)))
+			i++;
+	if (*(str + i) || !i || i > 10)
 		*has_error = 1;
 }
 
