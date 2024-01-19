@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/19 13:18:24 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/19 13:48:58 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,10 @@ void	cheaper_move_to_top(t_stack **a, t_stack **b, int chunk)
 		else
 			perform_and_log(a, b, RA);
 	while (*b != max)
-	{
 		if ((size(b) / 2) < index_of(*b, (*max).value))
 			perform_and_log(a, b, RRB);
 		else
 			perform_and_log(a, b, RB);
-	}
 }
 
 void	smash_sort(t_stack **a, t_stack **b, int chunk)

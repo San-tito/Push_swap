@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 19:22:46 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/19 13:23:30 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/19 13:48:21 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	validate_syntax(char *str, int *has_error)
 		str++;
 	i = 0;
 	while (ft_isdigit(*(str + i)))
-			i++;
+		i++;
 	if (*(str + i) || !i || i > 10)
 		*has_error = 1;
 }
