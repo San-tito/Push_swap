@@ -6,7 +6,7 @@
 #    By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:31:23 by sguzman           #+#    #+#              #
-#    Updated: 2024/01/19 13:15:07 by sguzman          ###   ########.fr        #
+#    Updated: 2024/01/22 00:00:00 by sguzman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #    
 
@@ -16,7 +16,7 @@
 
 NAME		= push_swap
 BNAME		= checker
-CC 		= gcc
+CC 		= cc
 CFLAGS		= -Wall -Wextra -Werror -g
 DFLAGS		= -MMD -MF $(@:.o=.d)
 
@@ -117,12 +117,11 @@ banner:
 	@echo
 	@printf "%b" "$(RESET)"
 
--include $(DEPS) $(DEPS_MAIN)
+-include $(DEPS) $(EXT_DEPS) $(DEPS_BMAIN)
 $(NAME):	$(OBJS) $(OBJS_MAIN)
 			@$(CC) $(CFLAGS) $(DFLAGS) -I $(INCLUDE_PATH) -o $@ $^
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Building program:" "$(CYAN)" $@ "$(GREEN)" "[✓]" "$(RESET)"
 
--include $(DEPS) $(EXT_DEPS) $(DEPS_BMAIN)
 $(BNAME):	$(OBJS) $(EXT_OBJS) $(OBJS_BMAIN)
 			@$(CC) $(CFLAGS) $(DFLAGS) -I $(INCLUDE_PATH) -o $@ $^
 			@printf "%b%-42s%-42b%-24s%b%s%b\n" "$(BLUE)" "Building program:" "$(CYAN)" $@ "$(GREEN)" "[✓]" "$(RESET)"

@@ -6,14 +6,13 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/19 13:47:12 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/22 00:01:28 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../external/get_next_line.h"
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -40,6 +39,7 @@ typedef struct s_operation
 /* ************************************************************************** */
 /*                          Argument Parsing Functions                        */
 /* ************************************************************************** */
+char				*get_next_line(int fd);
 int					ft_atoi(char *str, int *has_error);
 void				validate_syntax(char *str, int *has_error);
 void				search_for_duplicate(t_stack *stack, int value,
@@ -71,7 +71,7 @@ void				perform_and_log(t_stack **a, t_stack **b, int index);
 /* ************************************************************************** */
 /*                               Sorting Algorithm                            */
 /* ************************************************************************** */
-void				smash_sort(t_stack **a, t_stack **b, int chunk);
+void				smash_sort(t_stack **a, t_stack **b);
 void				shaker_sort(t_stack **a, t_stack **b);
 void				trident_sort(t_stack **a, t_stack **b);
 void				bubble_sort(t_stack *stack);
