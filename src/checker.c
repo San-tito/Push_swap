@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:56:24 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/08 12:37:44 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/23 23:24:29 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (argc < 3)
+	if (argc < 2)
 		return (0);
 	setup_stack(&a, argv, argc);
 	line = get_next_line(STDIN_FILENO);
