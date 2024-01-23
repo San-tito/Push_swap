@@ -6,26 +6,27 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:46:49 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/22 00:08:03 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/23 07:02:10 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*maximum(t_stack *stack)
+int	get_value_at(t_stack *stack, int wanted)
 {
+	int		index;
 	t_stack	*current;
-	t_stack	*min;
 
+	index = 0;
 	current = stack;
-	min = current;
 	while (current)
 	{
-		if ((*current).value > (*min).value)
-			min = current;
+		if (index == wanted)
+			break ;
 		current = (*current).next;
+		index++;
 	}
-	return (min);
+	return ((*current).value);
 }
 
 t_stack	*minimum(t_stack *stack)
@@ -95,25 +96,19 @@ void	trident_sort(t_stack **a, t_stack **b)
 	}
 }
 
-void	shaker_sort(t_stack **a, t_stack **b)
+int	index_of(t_stack *stack, int wanted)
 {
-	t_stack	*min;
+	int		index;
+	t_stack	*current;
 
-	if (size(a) == 2 && (**a).value > ((*(**a).next).value))
-		return (perform_and_log(a, b, SA));
-	while (size(a) > 3 && !stack_is_sorted(*a))
+	index = 0;
+	current = stack;
+	while (current)
 	{
-		min = minimum(*a);
-		while (*a != min)
-		{
-			if ((size(a) / 2) < index_of(*a, (*min).value))
-				perform_and_log(a, b, RRA);
-			else
-				perform_and_log(a, b, RA);
-		}
-		perform_and_log(a, b, PB);
+		if ((*current).value == wanted)
+			break ;
+		current = (*current).next;
+		index++;
 	}
-	trident_sort(a, b);
-	while (*b)
-		perform_and_log(a, b, PA);
+	return (index);
 }

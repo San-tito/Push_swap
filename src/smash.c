@@ -6,45 +6,11 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/23 06:35:39 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/23 07:03:45 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	index_of(t_stack *stack, int wanted)
-{
-	int		index;
-	t_stack	*current;
-
-	index = 0;
-	current = stack;
-	while (current)
-	{
-		if ((*current).value == wanted)
-			break ;
-		current = (*current).next;
-		index++;
-	}
-	return (index);
-}
-
-int	get_value_at(t_stack *stack, int wanted)
-{
-	int		index;
-	t_stack	*current;
-
-	index = 0;
-	current = stack;
-	while (current)
-	{
-		if (index == wanted)
-			break ;
-		current = (*current).next;
-		index++;
-	}
-	return ((*current).value);
-}
 
 int	find_prev(t_stack **a, t_stack **b, int value)
 {

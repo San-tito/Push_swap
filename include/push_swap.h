@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/22 00:01:28 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/23 07:01:44 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ void				bubble_sort(t_stack *stack);
 /* ************************************************************************** */
 /*                                 Sorting Utils                              */
 /* ************************************************************************** */
-t_stack				*maximum(t_stack *stack);
 t_stack				*minimum(t_stack *stack);
-int					sorted_value_at(t_stack **a, t_stack **b, int index);
+int					get_value_at(t_stack *stack, int wanted);
 int					index_of(t_stack *stack, int wanted);
 
 /* ************************************************************************** */
