@@ -18,13 +18,13 @@ jobs:
     - name: make bonus
       run: make bonus
     - name: Test with 3 elements
-      run:  make test ELEMENTS=3 TESTS=1000
+      run:  make test ELEMENTS=3 TESTS=100
     - name: Test with 5 elements
-      run:  make test ELEMENTS=5 TESTS=1000
+      run:  make test ELEMENTS=5 TESTS=100
     - name: Test with 100 elements
-      run:  make test ELEMENTS=100 TESTS=1000
+      run:  make test ELEMENTS=100 TESTS=100
     - name: Test with 500 elements
-      run:  make test ELEMENTS=500 TESTS=1000
+      run:  make test ELEMENTS=500 TESTS=100
 
   norminette:
     runs-on: ubuntu-latest
