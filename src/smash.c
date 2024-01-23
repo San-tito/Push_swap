@@ -6,155 +6,128 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/23 07:03:45 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/23 07:42:17 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_prev(t_stack **a, t_stack **b, int value)
+static int	look_for_cheaper(t_stack **a, t_stack **b)
 {
-	t_stack	*current;
-	t_stack	*copy;
-	int		prev;
-
-	copy = copy_stack(*b);
-	if (!copy)
-		wipe(a, b);
-	push(&copy, value);
-	if (!copy)
-		wipe(a, b);
-	bubble_sort(copy);
-	current = copy;
-	while ((*current).next && (*(*current).next).value != value)
-		current = (*current).next;
-	prev = (*current).value;
-	clear_stack(&copy);
-	return (prev);
-}
-
-int	find_following(t_stack **a, t_stack **b, int value)
-{
-	t_stack	*current;
-	t_stack	*copy;
-	int		follow;
-
-	copy = copy_stack(*a);
-	if (!copy)
-		wipe(a, b);
-	push(&copy, value);
-	if (!copy)
-		wipe(a, b);
-	bubble_sort(copy);
-	current = copy;
-	while ((*current).value != value)
-		current = (*current).next;
-	if ((*current).next)
-		follow = (*(*current).next).value;
-	else
-		follow = (*minimum(*a)).value;
-	clear_stack(&copy);
-	return (follow);
-}
-
-void	cheaper_move(t_stack **a, t_stack **b)
-{
-	int	index;
 	int	value;
-	int	moves_value;
 	int	prev;
-	int	moves_prev;
+	int	moves;
+	int	index;
 	int	min_moves;
-	int	min_value;
-	int	min_prev;
+	int	cheap_value;
 
-	if (!*b)
-		return ;
 	index = -1;
 	min_moves = size(a) + size(b);
+	cheap_value = (**a).value;
 	while (index++ < (size(a) - 1))
 	{
 		value = get_value_at(*a, index);
-		if ((size(a) / 2) < index_of(*a, value))
-			moves_value = size(a) - index_of(*a, value);
+		if ((size(a) * 0.5) < index_of(*a, value))
+			moves = size(a) - index_of(*a, value);
 		else
-			moves_value = index_of(*a, value);
+			moves = index_of(*a, value);
 		prev = find_prev(a, b, value);
-		if ((size(b) / 2) < index_of(*b, prev))
-			moves_prev = size(b) - index_of(*b, prev);
+		if ((size(b) * 0.5) < index_of(*b, prev))
+			moves += size(b) - index_of(*b, prev);
 		else
-			moves_prev = index_of(*b, prev);
-		if (min_moves > (moves_value + moves_prev))
+			moves += index_of(*b, prev);
+		if (min_moves > moves)
 		{
-			min_moves = (moves_value + moves_prev);
-			min_value = value;
-			min_prev = prev;
+			min_moves = moves;
+			cheap_value = value;
 		}
 	}
-	while ((**b).value != min_prev && (size(b) / 2) < index_of(*b, min_prev)
-		&& (**a).value != min_value && (size(a) / 2) < index_of(*a, min_value))
-		perform_and_log(a, b, RRR);
-	while ((**b).value != min_prev && (size(b) / 2) > index_of(*b, min_prev)
-		&& (**a).value != min_value && (size(a) / 2) > index_of(*a, min_value))
-		perform_and_log(a, b, RR);
-	while ((**b).value != min_prev && (size(b) / 2) < index_of(*b, min_prev))
-		perform_and_log(a, b, RRB);
-	while ((**b).value != min_prev && (size(b) / 2) > index_of(*b, min_prev))
-		perform_and_log(a, b, RB);
-	while ((**a).value != min_value && (size(a) / 2) < index_of(*a, min_value))
-		perform_and_log(a, b, RRA);
-	while ((**a).value != min_value && (size(a) / 2) > index_of(*a, min_value))
-		perform_and_log(a, b, RA);
+	return (cheap_value);
 }
 
-void	economic_move(t_stack **a, t_stack **b)
+static void	cheaper_move(t_stack **a, t_stack **b)
 {
-	int	index;
 	int	value;
-	int	moves_value;
+	int	prev;
+
+	if (!*b)
+		return ;
+	value = look_for_cheaper(a, b);
+	prev = find_prev(a, b, value);
+	while ((**b).value != prev && (size(b) * 0.5) < index_of(*b, prev)
+		&& (**a).value != value && (size(a) * 0.5) < index_of(*a, value))
+		perform_and_log(a, b, RRR);
+	while ((**b).value != prev && (size(b) * 0.5) > index_of(*b, prev)
+		&& (**a).value != value && (size(a) * 0.5) > index_of(*a, value))
+		perform_and_log(a, b, RR);
+	while ((**b).value != prev)
+		if ((size(b) * 0.5) < index_of(*b, prev))
+			perform_and_log(a, b, RRB);
+		else
+			perform_and_log(a, b, RB);
+	while ((**a).value != value)
+		if ((size(a) * 0.5) < index_of(*a, value))
+			perform_and_log(a, b, RRA);
+		else
+			perform_and_log(a, b, RA);
+}
+
+static int	look_for_economic(t_stack **a, t_stack **b)
+{
+	int	value;
 	int	follow;
-	int	moves_follow;
+	int	moves;
+	int	index;
 	int	min_moves;
-	int	min_value;
-	int	min_follow;
+	int	cheap_value;
 
 	index = -1;
 	min_moves = size(a) + size(b);
+	cheap_value = (**b).value;
 	while (index++ < (size(b) - 1))
 	{
 		value = get_value_at(*b, index);
-		if ((size(b) / 2) < index_of(*b, value))
-			moves_value = size(b) - index_of(*b, value);
+		if ((size(b) * 0.5) < index_of(*b, value))
+			moves = size(b) - index_of(*b, value);
 		else
-			moves_value = index_of(*b, value);
+			moves = index_of(*b, value);
 		follow = find_following(a, b, value);
-		if ((size(a) / 2) < index_of(*a, follow))
-			moves_follow = size(a) - index_of(*a, follow);
+		if ((size(a) * 0.5) < index_of(*a, follow))
+			moves += size(a) - index_of(*a, follow);
 		else
-			moves_follow = index_of(*a, follow);
-		if (min_moves > (moves_value + moves_follow))
+			moves += index_of(*a, follow);
+		if (min_moves > moves)
 		{
-			min_moves = (moves_value + moves_follow);
-			min_value = value;
-			min_follow = follow;
+			min_moves = moves;
+			cheap_value = value;
 		}
 	}
-	while ((**a).value != min_follow && (size(a) / 2) < index_of(*a, min_follow)
-		&& (**b).value != min_value && (size(b) / 2) < index_of(*b, min_value))
+	return (cheap_value);
+}
+
+static void	economic_move(t_stack **a, t_stack **b)
+{
+	int	value;
+	int	follow;
+
+	value = look_for_economic(a, b);
+	follow = find_following(a, b, value);
+	while ((**a).value != follow && (size(a) * 0.5) < index_of(*a, follow)
+		&& (**b).value != value && (size(b) * 0.5) < index_of(*b, value))
 		perform_and_log(a, b, RRR);
-	while ((**a).value != min_follow && (size(a) / 2) > index_of(*a, min_follow)
-		&& (**b).value != min_value && (size(b) / 2) > index_of(*b, min_value))
+	while ((**a).value != follow && (size(a) * 0.5) > index_of(*a, follow)
+		&& (**b).value != value && (size(b) * 0.5) > index_of(*b, value))
 		perform_and_log(a, b, RR);
-	while ((**a).value != min_follow && (size(a) / 2) < index_of(*a,
-			min_follow))
-		perform_and_log(a, b, RRA);
-	while ((**a).value != min_follow && (size(a) / 2) > index_of(*a,
-			min_follow))
-		perform_and_log(a, b, RA);
-	while ((**b).value != min_value && (size(b) / 2) < index_of(*b, min_value))
-		perform_and_log(a, b, RRB);
-	while ((**b).value != min_value && (size(b) / 2) > index_of(*b, min_value))
-		perform_and_log(a, b, RB);
+	while ((**a).value != follow)
+		if ((size(a) * 0.5) < index_of(*a, follow))
+			perform_and_log(a, b, RRA);
+		else
+			perform_and_log(a, b, RA);
+	while ((**b).value != value)
+		if ((size(b) * 0.5) < index_of(*b, value))
+			perform_and_log(a, b, RRB);
+		else
+			perform_and_log(a, b, RB);
 }
 
 void	smash_sort(t_stack **a, t_stack **b)
@@ -177,7 +150,7 @@ void	smash_sort(t_stack **a, t_stack **b)
 	min = minimum(*a);
 	while (*a != min)
 	{
-		if ((size(a) / 2) < index_of(*a, (*min).value))
+		if ((size(a) * 0.5) < index_of(*a, (*min).value))
 			perform_and_log(a, b, RRA);
 		else
 			perform_and_log(a, b, RA);

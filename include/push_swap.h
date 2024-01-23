@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:26 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/23 07:01:44 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/23 07:24:07 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void				bubble_sort(t_stack *stack);
 t_stack				*minimum(t_stack *stack);
 int					get_value_at(t_stack *stack, int wanted);
 int					index_of(t_stack *stack, int wanted);
+int					find_prev(t_stack **a, t_stack **b, int value);
+int					find_following(t_stack **a, t_stack **b, int value);
 
 /* ************************************************************************** */
 /*                                Operations                                  */
