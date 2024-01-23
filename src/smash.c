@@ -6,38 +6,36 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/23 07:54:55 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/23 08:07:43 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	look_for_cheaper(t_stack **a, t_stack **b)
+static int	look_for_cheaper(t_stack **a, t_stack **b, int min_moves,
+		int cheap_value)
 {
+	int	value;
+	int	prev;
 	int	moves;
 	int	index;
-	int	min_moves;
-	int	cheap_value;
 
 	index = -1;
-	min_moves = size(a) + size(b);
-	cheap_value = (**a).value;
 	while (index++ < (size(a) - 1))
 	{
+		value = get_value_at(*a, index);
+		moves = index;
 		if ((size(a) * 0.5) < index_of(*a, get_value_at(*a, index)))
 			moves = size(a) - index;
+		prev = find_prev(a, b, value);
+		if ((size(b) * 0.5) < index_of(*b, prev))
+			moves += size(b) - index_of(*b, prev);
 		else
-			moves = index;
-		if ((size(b) * 0.5) < index_of(*b, find_prev(a, b, get_value_at(*a,
-						index))))
-			moves += size(b) - index_of(*b, find_prev(a, b, get_value_at(*a,
-							index)));
-		else
-			moves += index_of(*b, find_prev(a, b, get_value_at(*a, index)));
+			moves += index_of(*b, prev);
 		if (min_moves > moves)
 		{
 			min_moves = moves;
-			cheap_value = get_value_at(*a, index);
+			cheap_value = value;
 		}
 	}
 	return (cheap_value);
@@ -48,7 +46,7 @@ static void	cheaper_move(t_stack **a, t_stack **b)
 	int	value;
 	int	prev;
 
-	value = look_for_cheaper(a, b);
+	value = look_for_cheaper(a, b, size(a) + size(b), (**a).value);
 	prev = find_prev(a, b, value);
 	while ((**b).value != prev && (size(b) * 0.5) < index_of(*b, prev)
 		&& (**a).value != value && (size(a) * 0.5) < index_of(*a, value))
@@ -72,33 +70,30 @@ static void	cheaper_move(t_stack **a, t_stack **b)
 	}
 }
 
-static int	look_for_economic(t_stack **a, t_stack **b)
+static int	look_for_economic(t_stack **a, t_stack **b, int min_moves,
+		int cheap_value)
 {
+	int	value;
+	int	follow;
 	int	moves;
 	int	index;
-	int	min_moves;
-	int	cheap_value;
 
 	index = -1;
-	min_moves = size(a) + size(b);
-	cheap_value = (**b).value;
 	while (index++ < (size(b) - 1))
 	{
+		value = get_value_at(*b, index);
+		moves = index;
 		if ((size(b) * 0.5) < index)
 			moves = size(b) - index;
+		follow = find_following(a, b, value);
+		if ((size(a) * 0.5) < index_of(*a, follow))
+			moves += size(a) - index_of(*a, follow);
 		else
-			moves = index;
-		if ((size(a) * 0.5) < index_of(*a, find_following(a, b, get_value_at(*b,
-						index))))
-			moves += size(a) - index_of(*a, find_following(a, b,
-						get_value_at(*b, index)));
-		else
-			moves += index_of(*a, find_following(a, b, get_value_at(*b,
-							index)));
+			moves += index_of(*a, follow);
 		if (min_moves > moves)
 		{
 			min_moves = moves;
-			cheap_value = get_value_at(*b, index);
+			cheap_value = value;
 		}
 	}
 	return (cheap_value);
@@ -109,7 +104,7 @@ static void	economic_move(t_stack **a, t_stack **b)
 	int	value;
 	int	follow;
 
-	value = look_for_economic(a, b);
+	value = look_for_economic(a, b, size(a) + size(b), (**b).value);
 	follow = find_following(a, b, value);
 	while ((**a).value != follow && (size(a) * 0.5) < index_of(*a, follow)
 		&& (**b).value != value && (size(b) * 0.5) < index_of(*b, value))
