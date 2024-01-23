@@ -72,7 +72,6 @@ void				perform_and_log(t_stack **a, t_stack **b, int index);
 /*                               Sorting Algorithm                            */
 /* ************************************************************************** */
 void				smash_sort(t_stack **a, t_stack **b);
-void				shaker_sort(t_stack **a, t_stack **b);
 void				trident_sort(t_stack **a, t_stack **b);
 void				bubble_sort(t_stack *stack);
 
