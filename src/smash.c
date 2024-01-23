@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:13:33 by sguzman           #+#    #+#             */
-/*   Updated: 2024/01/23 06:26:56 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/23 06:35:39 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,20 +125,20 @@ void	cheaper_move(t_stack **a, t_stack **b)
 			min_prev = prev;
 		}
 	}
-	while((**b).value != min_prev && (size(b) / 2) < index_of(*b, min_prev) && (**a).value != min_value && (size(a) / 2) < index_of(*a, min_value))
-			perform_and_log(a, b, RRR);
-	while((**b).value != min_prev && (size(b) / 2) > index_of(*b, min_prev) && (**a).value != min_value && (size(a) / 2) > index_of(*a, min_value))
-			perform_and_log(a, b, RR);
-	while ((**b).value != min_prev)
-		if ((size(b) / 2) < index_of(*b, min_prev))
-			perform_and_log(a, b, RRB);
-		else
-			perform_and_log(a, b, RB);
-	while ((**a).value != min_value)
-		if ((size(a) / 2) < index_of(*a, min_value))
-			perform_and_log(a, b, RRA);
-		else
-			perform_and_log(a, b, RA);
+	while ((**b).value != min_prev && (size(b) / 2) < index_of(*b, min_prev)
+		&& (**a).value != min_value && (size(a) / 2) < index_of(*a, min_value))
+		perform_and_log(a, b, RRR);
+	while ((**b).value != min_prev && (size(b) / 2) > index_of(*b, min_prev)
+		&& (**a).value != min_value && (size(a) / 2) > index_of(*a, min_value))
+		perform_and_log(a, b, RR);
+	while ((**b).value != min_prev && (size(b) / 2) < index_of(*b, min_prev))
+		perform_and_log(a, b, RRB);
+	while ((**b).value != min_prev && (size(b) / 2) > index_of(*b, min_prev))
+		perform_and_log(a, b, RB);
+	while ((**a).value != min_value && (size(a) / 2) < index_of(*a, min_value))
+		perform_and_log(a, b, RRA);
+	while ((**a).value != min_value && (size(a) / 2) > index_of(*a, min_value))
+		perform_and_log(a, b, RA);
 }
 
 void	economic_move(t_stack **a, t_stack **b)
@@ -173,20 +173,22 @@ void	economic_move(t_stack **a, t_stack **b)
 			min_follow = follow;
 		}
 	}
-	while((**a).value != min_follow && (size(a) / 2) < index_of(*a, min_follow) && (**b).value != min_value && (size(b) / 2) < index_of(*b, min_value))
-			perform_and_log(a, b, RRR);
-	while((**a).value != min_follow && (size(a) / 2) > index_of(*a, min_follow) && (**b).value != min_value && (size(b) / 2) > index_of(*b, min_value))
-			perform_and_log(a, b, RR);
-	while ((**a).value != min_follow)
-		if ((size(a) / 2) < index_of(*a, min_follow))
-			perform_and_log(a, b, RRA);
-		else
-			perform_and_log(a, b, RA);
-	while ((**b).value != min_value)
-		if ((size(b) / 2) < index_of(*b, min_value))
-			perform_and_log(a, b, RRB);
-		else
-			perform_and_log(a, b, RB);
+	while ((**a).value != min_follow && (size(a) / 2) < index_of(*a, min_follow)
+		&& (**b).value != min_value && (size(b) / 2) < index_of(*b, min_value))
+		perform_and_log(a, b, RRR);
+	while ((**a).value != min_follow && (size(a) / 2) > index_of(*a, min_follow)
+		&& (**b).value != min_value && (size(b) / 2) > index_of(*b, min_value))
+		perform_and_log(a, b, RR);
+	while ((**a).value != min_follow && (size(a) / 2) < index_of(*a,
+			min_follow))
+		perform_and_log(a, b, RRA);
+	while ((**a).value != min_follow && (size(a) / 2) > index_of(*a,
+			min_follow))
+		perform_and_log(a, b, RA);
+	while ((**b).value != min_value && (size(b) / 2) < index_of(*b, min_value))
+		perform_and_log(a, b, RRB);
+	while ((**b).value != min_value && (size(b) / 2) > index_of(*b, min_value))
+		perform_and_log(a, b, RB);
 }
 
 void	smash_sort(t_stack **a, t_stack **b)
